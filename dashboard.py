@@ -14,8 +14,8 @@ fl = st.file_uploader(":file_folder: Upload file", type=(["csv", "txt", "xlsx", 
 if fl is not None:
     filename = fl.name
     st.write(filename)
-    df = pd.read_csv(filename, encoding="ISO-8859-1")
+    df = pd.read_csv(filename, encoding = "ISO-8859-1")
 else:
     os.chdir(r"C:\Users\rache\Desktop\python streamlit\dashboard")
-    df = pd.read_csv(r"Store.csv", encoding="ISO-8859-1")
+    df = pd.read_csv(r"Store.csv", encoding = "ISO-8859-1")
     
