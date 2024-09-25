@@ -89,3 +89,5 @@ with col2:
     fig = px.pie(filtered_df, values="Sales", names="Region", hole=0.5,  template="plotly_dark")
     fig.update_traces(text=filtered_df["Region"], textposition="outside",  marker=dict(colors=['#003f5c', '#bc5090', '#ff6361', '#ffa600'])) #textinfo='label+value',
     st.plotly_chart(fig, use_container_width=True)
+
+    
