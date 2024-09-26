@@ -66,9 +66,9 @@ elif not state and not city:
 elif not region and not city:
     filtered_df = df[df["State"].isin(state)]
 elif state and city:
-    filtered_df = df_state[df["State"].isin(region) & df_state["City"].isin(city)]
+    filtered_df = df_state[df["State"].isin(state) & df_state["City"].isin(city)]
 elif region and city:
-    filtered_df = df_state[df["Region"].isin(state) & df_state["City"].isin(city)]
+    filtered_df = df_state[df["Region"].isin(region) & df_state["City"].isin(city)]
 elif region and state:
     filtered_df = df_state[df["Region"].isin(region) & df_state["State"].isin(state)]
 elif city:
@@ -91,3 +91,17 @@ with col2:
     st.plotly_chart(fig, use_container_width=True)
 
     
+cl1, cl2 = st.columns(2)
+with cl1:
+    with st.expander("Category_ViewData"):
+        st.write(category_df.style.background_gradient(cmap="Blues"))
+        csv = category_df.to_csv(index=False).encode('utf-8')
+        st.download_button("Download Data", data = csv, file_name='category.csv', mime='text/csv', help='Click to download CSV file')
+
+with cl2:
+    with st.expander("Region_ViewData"):
+        region = filtered_df.groupby(by = 'Region', as_index=False)["Sales"].sum()
+        st.write(region.style.background_gradient(cmap="Oranges"))
+        csv = region.to_csv(index=False).encode('utf-8')
+        st.download_button("Download Data", data = csv, file_name='region.csv', mime='text/csv', help='Click to download CSV file')
+        
