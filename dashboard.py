@@ -177,3 +177,10 @@ fig3 = px.treemap(
 )
 fig3.update_layout(width=800, height=650)
 st.plotly_chart(fig3, use_container_width=True)
+
+chart1, chart2 = st.columns((2))
+with chart1:
+    st.subheader("Sales by Segment")
+    fig = px.pie(filtered_df, values="Sales", names="Segment", template="plotly_dark")
+    fig.update_traces(text=filtered_df["Segment"], textposition="inside")
+    st.plotly_chart(fig, use_container_width=True)
