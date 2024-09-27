@@ -165,3 +165,15 @@ with st.expander("View Time Series Data: "):
     st.download_button(
         "Download Data", data=csv, file_name="Time Series.csv", mime="text/csv"
     )
+
+# tree map view
+st.subheader("Treemap Sales View")
+fig3 = px.treemap(
+    filtered_df,
+    path=["Region", "Category", "Sub-Category"],
+    values="Sales",
+    hover_data=["Sales"],
+    color="Sub-Category",
+)
+fig3.update_layout(width=800, height=650)
+st.plotly_chart(fig3, use_container_width=True)
