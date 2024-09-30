@@ -209,3 +209,14 @@ with st.expander("Summary_Table"):
         data=filtered_df, values="Sales", index=["Sub-Category"], columns="month"
     )
     st.write(sub_category_Year.style.background_gradient(cmap="Blues"))
+
+# scatter plot
+data1 = px.scatter(filtered_df, x="Sales", y="Profit", size="Quantity")
+data1["layout"].update(
+    title="Sales x Profit Relationship",
+    titlefont=dict(size=20),
+    xaxis=dict(title="Sales", titlefont=dict(size=18)),
+    yaxis=dict(title="Profit", titlefont=dict(size=18)),
+)
+
+st.plotly_chart(data1, use_container_width=True)
